@@ -5,13 +5,6 @@
 #include <sys/socket.h>
 #include <stdlib.h>
 
-typedef struct
-{
-	float avg;
-	float max;
-	float min;
-}Stats;     //computedStats;
-
 Stats compute_statistics(const float* numberset, int setlength) {
     Stats s;
 
