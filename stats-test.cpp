@@ -9,11 +9,29 @@
 TEST_CASE("reports average, minimum and maximum") {
     float numberset[] = {1.5, 8.9, 3.2, 4.5};
     int setlength = sizeof(numberset) / sizeof(numberset[0]);
-    struct Stats computedStats = compute_statistics(numberset, setlength);
+
+    //size of nums in the array=4*4=16, size of each element in array=4
+        printf("\n%ld", sizeof(numberset));  //16
+        printf("\n%ld", sizeof(numberset[0])); //4
+        printf("\n%ld", sizeof(setlength)); // Number of elements in the array, 4
+
+    computedStats = compute_statistics(numberset, setlength);
     float epsilon = 0.001;
-    REQUIRE(abs(computedStats.average - 4.525) < epsilon);
+
+    /* Check for computed avg, min and max against the actual values, if same then test is passed else fail*/
+    //abs gets the absolute(or positive) value of the difference between two numbers
+    printf("\nComputed Avg:%f, Computed Max:%f, Computed Min:%f", computedStats.avg, computedStats.max, computedStats.min );
+    //printf(REQUIRE(abs(computedStats.avg - 4.525) < epsilon));
+    //printf(REQUIRE(abs(computedStats.max - 8.9) < epsilon)));
+    //printf(REQUIRE(abs(computedStats.min - 1.5) < epsilon));
+
+/*    REQUIRE(abs(computedStats.average - 4.525) < epsilon);
     REQUIRE(abs(computedStats.max - 8.9) < epsilon);
-    REQUIRE(abs(computedStats.min - 1.5) < epsilon);
+    REQUIRE(abs(computedStats.min - 1.5) < epsilon);*/
+
+    abs(computedStats.avg - 4.525) < epsilon? printf("\n Computed average is correct"):printf("\n Computed average is incorrect");
+    abs(computedStats.max - 8.9) < epsilon? printf("\n Computed Max value is correct"):printf("\n Computed Max value is incorrect");
+    abs(computedStats.min - 1.5) < epsilon? printf("\n Computed Min value is correct"):printf("\n Computed Min value is incorrect");
 }
 
 TEST_CASE("average is NaN for empty array") {
@@ -22,6 +40,9 @@ TEST_CASE("average is NaN for empty array") {
     //NAN (not-a-number), as defined in math.h
     
     //Design the REQUIRE statement here.
+    REQUIRE(is_nan(computedStats.average))
+    REQUIRE(is_nan(computedStats.max))
+	REQUIRE(is_nan(computedStats.min))
     //Use https://stackoverflow.com/questions/1923837/how-to-use-nan-and-inf-in-c
 }
 
