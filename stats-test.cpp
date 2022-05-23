@@ -25,7 +25,7 @@ TEST_CASE("reports average, minimum and maximum") {
     //printf(REQUIRE(abs(computedStats.max - 8.9) < epsilon)));
     //printf(REQUIRE(abs(computedStats.min - 1.5) < epsilon));
 
-/*    REQUIRE(abs(computedStats.average - 4.525) < epsilon);
+/*    REQUIRE(abs(computedStats.avg  - 4.525) < epsilon);
     REQUIRE(abs(computedStats.max - 8.9) < epsilon);
     REQUIRE(abs(computedStats.min - 1.5) < epsilon);*/
 
@@ -40,7 +40,7 @@ TEST_CASE("average is NaN for empty array") {
     //NAN (not-a-number), as defined in math.h
     
     //Design the REQUIRE statement here.
-    REQUIRE(is_nan(computedStats.average))
+    REQUIRE(is_nan(computedStats.avg))
     REQUIRE(is_nan(computedStats.max))
 	REQUIRE(is_nan(computedStats.min))
     //Use https://stackoverflow.com/questions/1923837/how-to-use-nan-and-inf-in-c
