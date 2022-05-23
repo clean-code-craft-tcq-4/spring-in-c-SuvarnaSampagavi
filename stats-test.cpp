@@ -2,6 +2,8 @@
 
 #include "catch.hpp"
 #include "stats.h"
+#include "emailAlerter.h"
+#include "ledAlerter.h"
 
 #include <stdlib.h>
 #include <math.h>
@@ -15,7 +17,7 @@ TEST_CASE("reports average, minimum and maximum") {
         printf("\n%ld", sizeof(numberset[0])); //4
         printf("\n%ld", sizeof(setlength)); // Number of elements in the array, 4
 
-    computedStats = compute_statistics(numberset, setlength);
+    Stats_s computedStats = compute_statistics(numberset, setlength);
     float epsilon = 0.001;
 
     /* Check for computed avg, min and max against the actual values, if same then test is passed else fail*/
@@ -35,14 +37,14 @@ TEST_CASE("reports average, minimum and maximum") {
 }
 
 TEST_CASE("average is NaN for empty array") {
-    Stats computedStats = compute_statistics(0, 0);
+    Stats_s computedStats = compute_statistics(0, 0);
     //All fields of computedStats (average, max, min) must be
     //NAN (not-a-number), as defined in math.h
     
     //Design the REQUIRE statement here.
-    REQUIRE(is_nan(computedStats.avg))
-    REQUIRE(is_nan(computedStats.max))
-	REQUIRE(is_nan(computedStats.min))
+    REQUIRE(isnan(computedStats.avg));
+    REQUIRE(isnan(computedStats.max));
+    REQUIRE(isnan(computedStats.min));
     //Use https://stackoverflow.com/questions/1923837/how-to-use-nan-and-inf-in-c
 }
 
@@ -53,7 +55,7 @@ TEST_CASE("raises alerts when max is greater than threshold") {
 
     float numberset[] = {99.8, 34.2, 4.5};
     int setlength = sizeof(numberset) / sizeof(numberset[0]);
-    Stats computedStats = compute_statistics(numberset, setlength);
+    Stats_s computedStats = compute_statistics(numberset, setlength);
 
     const float maxThreshold = 10.2;
     check_and_alert(maxThreshold, alerters, computedStats);
