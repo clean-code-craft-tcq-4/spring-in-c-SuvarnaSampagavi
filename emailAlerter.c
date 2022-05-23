@@ -1,4 +1,4 @@
-void emailAlerter(void)
+int emailAlerter(void)
 {
-
+  return (0);
 }
