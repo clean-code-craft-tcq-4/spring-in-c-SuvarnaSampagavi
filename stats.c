@@ -16,32 +16,27 @@ Stats_s compute_statistics(const float* numberset, int setlength) {
     float sum = 0;
     float largest = numberset[0];
     float smallest = numberset[0];
-
-    for(i=0; i< setlength; i++)
+    if (numberset)
     {
-        sum = sum + numberset[i];
-    }
-    s.avg = sum/setlength;
-    for(i = 1; i < setlength; i++)
-    {
-    	if(largest < numberset[i])
+    	for(i=0; i< setlength; i++)
     	{
-    		largest = numberset[i];
+    	    sum = sum + numberset[i];
     	}
-    	if(smallest > numberset[i])
+    	s.avg = sum/setlength;
+    	for(i = 1; i < setlength; i++)
     	{
-    		smallest = numberset[i];
+    		if(largest < numberset[i])
+    		{
+    			largest = numberset[i];
+    		}
+    		if(smallest > numberset[i])
+    		{
+    			smallest = numberset[i];
+    		}
     	}
-    }
-    s.max = largest;
-    s.min = smallest;
-    printf("\n%f, %f, %f", s.avg, s.max, s.min);
-
-    if(numberset == 0)
-    {
-    	s.avg = 0;
-    	s.min = 0;
-    	s.max = 0;
+    	s.max = largest;
+    	s.min = smallest;
+    	printf("\nAvg = %f, Max = %f,Min = %f", s.avg, s.max, s.min);
     }
 
     return (s);
