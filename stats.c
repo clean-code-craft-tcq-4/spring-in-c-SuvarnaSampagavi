@@ -1,10 +1,50 @@
 #include "stats.h"
 
-struct Stats compute_statistics(const float* numberset, int setlength) {
-    struct Stats s;
-    s.average = 0;
+#include <stdio.h>
+#include <string.h>
+#include <sys/socket.h>
+#include <stdlib.h>
+
+Stats_s compute_statistics(const float* numberset, int setlength) {
+    Stats_s s;
+
+    s.avg = 0;
     s.min = 0;
     s.max = 0;
+
+    int i = 0;
+    float sum = 0;
+    float largest = numberset[0];
+    float smallest = numberset[0];
+    if (numberset)
+    {
+    	for(i=0; i< setlength; i++)
+    	{
+    	    sum = sum + numberset[i];
+    	}
+    	s.avg = sum/setlength;
+    	for(i = 1; i < setlength; i++)
+    	{
+    		if(largest < numberset[i])
+    		{
+    			largest = numberset[i];
+    		}
+    		if(smallest > numberset[i])
+    		{
+    			smallest = numberset[i];
+    		}
+    	}
+    	s.max = largest;
+    	s.min = smallest;
+    	printf("\nAvg = %f, Max = %f,Min = %f", s.avg, s.max, s.min);
+    }
+
+    return (s);
+}
+
+void check_and_alert(float maxThreshold, alerter_funcptr alerters[], Stats_s computedStats)
+{
+	
 }
 
 int emailAlertCallCount = 0;
