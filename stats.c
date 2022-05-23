@@ -5,8 +5,8 @@
 #include <sys/socket.h>
 #include <stdlib.h>
 
-Stats compute_statistics(const float* numberset, int setlength) {
-    Stats s;
+Stats_s compute_statistics(const float* numberset, int setlength) {
+    Stats_s s;
 
     s.avg = 0;
     s.min = 0;
