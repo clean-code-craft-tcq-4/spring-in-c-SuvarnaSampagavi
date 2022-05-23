@@ -47,5 +47,10 @@ Stats_s compute_statistics(const float* numberset, int setlength) {
     return (s);
 }
 
+void check_and_alert(float maxThreshold, alerter_funcptr alerters[], Stats_s computedStats)
+{
+	
+}
+
 int emailAlertCallCount = 0;
 int ledAlertCallCount = 0;
